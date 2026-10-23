@@ -1,0 +1,31 @@
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <a class="brand" href="/">
+          <span class="brand-mark" aria-hidden="true">IM</span>
+          <span><%= company.name %></span>
+        </a>
+        <p class="muted"><%= company.tagline %>.</p>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <% company.phones.forEach(function (phone) { %>
+          <p><a href="tel:<%= phone.replace(/\s/g, '') %>"><%= phone %></a></p>
+        <% }) %>
+        <p><a href="mailto:<%= company.email %>"><%= company.email %></a></p>
+      </div>
+      <div>
+        <h3>Explore</h3>
+        <p><a href="/#services">Services</a></p>
+        <p><a href="/#roadmap">Roadmap</a></p>
+        <p><a href="/#contact">Get in touch</a></p>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>&copy; <%= year %> <%= company.name %>. All rights reserved.</p>
+      <a href="#top">Back to top ↑</a>
+    </div>
+  </footer>
+  <script src="/js/main.js" defer></script>
+</body>
+</html>

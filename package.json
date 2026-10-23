@@ -1,0 +1,20 @@
+{
+  "name": "inventory-masters",
+  "version": "1.0.0",
+  "description": "Inventory Masters website: inventory, ERP and Lean operational excellence services",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.22.3"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "private": true
+}

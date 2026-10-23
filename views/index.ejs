@@ -1,0 +1,251 @@
+<%- include('partials/head', { title: company.name + ' | ' + company.tagline }) %>
+<main>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy reveal">
+        <p class="eyebrow eyebrow-light"><%= hero.eyebrow %></p>
+        <h1><%= hero.title %></h1>
+        <p class="lead"><%= hero.lead %></p>
+        <div class="hero-actions">
+          <a class="btn" href="#contact">Book a consultation <%- include('partials/icon', { name: 'arrow' }) %></a>
+          <a class="btn btn-ghost" href="#services">See what we offer</a>
+        </div>
+      </div>
+      <div class="hero-panel reveal" aria-label="Target outcomes">
+        <p class="panel-title">Target outcomes</p>
+        <% outcomes.stats.forEach(function (s) { %>
+          <div class="panel-stat">
+            <span class="panel-value"><%= s.value %><%= s.suffix %></span>
+            <span class="panel-label"><%= s.label %></span>
+          </div>
+        <% }) %>
+      </div>
+    </div>
+  </section>
+
+  <!-- Overview: from / to -->
+  <section class="section" id="overview">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Executive overview</p>
+        <h2>Transforming stock operations</h2>
+        <p class="muted">The problems we see most often in engineering warehouses, and where we take them.</p>
+      </div>
+      <div class="compare">
+        <div class="compare-col compare-from reveal">
+          <h3>Common challenges</h3>
+          <% overview.challenges.forEach(function (c) { %>
+            <div class="compare-item">
+              <span class="badge badge-bad"><%- include('partials/icon', { name: 'x' }) %></span>
+              <div><strong><%= c.title %></strong><p><%= c.text %></p></div>
+            </div>
+          <% }) %>
+        </div>
+        <div class="compare-arrow" aria-hidden="true"><%- include('partials/icon', { name: 'arrow' }) %></div>
+        <div class="compare-col compare-to reveal">
+          <h3>Target state</h3>
+          <% overview.targets.forEach(function (t) { %>
+            <div class="compare-item">
+              <span class="badge badge-good"><%- include('partials/icon', { name: 'check' }) %></span>
+              <div><strong><%= t.title %></strong><p><%= t.text %></p></div>
+            </div>
+          <% }) %>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scope -->
+  <section class="section section-alt" id="services">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">What we offer</p>
+        <h2>Scope of engagement</h2>
+        <p class="muted">Three connected service areas, delivered together or on their own.</p>
+      </div>
+      <div class="grid-3">
+        <% scope.forEach(function (area) { %>
+          <article class="card reveal">
+            <span class="card-icon"><%- include('partials/icon', { name: area.icon }) %></span>
+            <h3><%= area.title %></h3>
+            <ul class="ticks">
+              <% area.items.forEach(function (item) { %>
+                <li><%- include('partials/icon', { name: 'check' }) %><%= item %></li>
+              <% }) %>
+            </ul>
+          </article>
+        <% }) %>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pillars -->
+  <section class="section" id="approach">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Our approach</p>
+        <h2>Three pillars of the work</h2>
+      </div>
+      <div class="pillars">
+        <% pillars.forEach(function (p) { %>
+          <article class="pillar reveal">
+            <div class="pillar-head">
+              <span class="pillar-num"><%= p.number %></span>
+              <div>
+                <p class="eyebrow"><%= p.label %></p>
+                <h3><%= p.title %></h3>
+              </div>
+            </div>
+            <ol class="pillar-points">
+              <% p.points.forEach(function (pt) { %>
+                <li><strong><%= pt.title %></strong><span><%= pt.text %></span></li>
+              <% }) %>
+            </ol>
+          </article>
+        <% }) %>
+      </div>
+    </div>
+  </section>
+
+  <!-- Framework -->
+  <section class="section section-dark">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow eyebrow-light">Transformation framework</p>
+        <h2>Our solution framework</h2>
+        <p>Five workstreams that take you from messy stock files to a self-improving operation.</p>
+      </div>
+      <ol class="framework">
+        <% framework.forEach(function (f, i) { %>
+          <li class="reveal">
+            <span class="framework-num"><%= i + 1 %></span>
+            <h3><%= f.title %></h3>
+            <p><%= f.text %></p>
+          </li>
+        <% }) %>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Outcomes -->
+  <section class="section" id="outcomes">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Business impact</p>
+        <h2>Expected business outcomes</h2>
+      </div>
+      <div class="stats">
+        <% outcomes.stats.forEach(function (s) { %>
+          <div class="stat reveal">
+            <span class="stat-value" data-count="<%= s.value %>" data-suffix="<%= s.suffix %>"><%= s.value %><%= s.suffix %></span>
+            <span class="stat-label"><%= s.label %></span>
+          </div>
+        <% }) %>
+      </div>
+      <ul class="benefits">
+        <% outcomes.benefits.forEach(function (b) { %>
+          <li class="reveal"><%- include('partials/icon', { name: 'check' }) %><span><%= b %></span></li>
+        <% }) %>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Roadmap -->
+  <section class="section section-alt" id="roadmap">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Implementation</p>
+        <h2>Execution roadmap</h2>
+        <p class="muted">A phased rollout that keeps operations running while things improve.</p>
+      </div>
+      <ol class="roadmap">
+        <% roadmap.forEach(function (r) { %>
+          <li class="reveal">
+            <span class="phase">Phase <%= r.phase %></span>
+            <h3><%= r.title %></h3>
+            <p><%= r.text %></p>
+          </li>
+        <% }) %>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Why us -->
+  <section class="section" id="why">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Value advantage</p>
+        <h2>Why <%= company.name %>?</h2>
+      </div>
+      <div class="grid-3">
+        <% why.forEach(function (w, i) { %>
+          <article class="card card-plain reveal">
+            <span class="why-num">0<%= i + 1 %></span>
+            <h3><%= w.title %></h3>
+            <p class="muted"><%= w.text %></p>
+          </article>
+        <% }) %>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="section section-dark" id="contact">
+    <div class="container contact-grid">
+      <div class="contact-copy reveal">
+        <p class="eyebrow eyebrow-light">Let’s talk</p>
+        <h2>Ready to optimise your operations?</h2>
+        <p>Let’s build an error-free, decentralised stock management ecosystem together. Tell us a little about your operation and we’ll get back to you.</p>
+        <ul class="contact-list">
+          <% company.phones.forEach(function (phone) { %>
+            <li><%- include('partials/icon', { name: 'phone' }) %><a href="tel:<%= phone.replace(/\s/g, '') %>"><%= phone %></a></li>
+          <% }) %>
+          <li><%- include('partials/icon', { name: 'mail' }) %><a href="mailto:<%= company.email %>"><%= company.email %></a></li>
+        </ul>
+      </div>
+
+      <form class="contact-form reveal" id="contact-form" action="/api/contact" method="post" novalidate>
+        <div class="field-row">
+          <label class="field">
+            <span>Name *</span>
+            <input name="name" autocomplete="name" required maxlength="120">
+            <small class="error" data-error="name"></small>
+          </label>
+          <label class="field">
+            <span>Company</span>
+            <input name="company" autocomplete="organization" maxlength="160">
+          </label>
+        </div>
+        <div class="field-row">
+          <label class="field">
+            <span>Email *</span>
+            <input name="email" type="email" autocomplete="email" required maxlength="160">
+            <small class="error" data-error="email"></small>
+          </label>
+          <label class="field">
+            <span>Phone</span>
+            <input name="phone" type="tel" autocomplete="tel" maxlength="40">
+          </label>
+        </div>
+        <label class="field">
+          <span>What can we help with?</span>
+          <select name="service">
+            <option value="">Choose a service</option>
+            <% services.forEach(function (s) { %><option><%= s %></option><% }) %>
+          </select>
+          <small class="error" data-error="service"></small>
+        </label>
+        <label class="field">
+          <span>Message *</span>
+          <textarea name="message" rows="4" required maxlength="3000" placeholder="e.g. We run three stores and our stock counts never match the ERP…"></textarea>
+          <small class="error" data-error="message"></small>
+        </label>
+        <label class="hp" aria-hidden="true">Website <input name="website" tabindex="-1" autocomplete="off"></label>
+        <button class="btn btn-block" type="submit">Send enquiry</button>
+        <p class="form-status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+</main>
+<%- include('partials/footer') %>
