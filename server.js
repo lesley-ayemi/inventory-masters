@@ -2,6 +2,7 @@ const path = require('path');
 const fs = require('fs/promises');
 const express = require('express');
 const content = require('./src/content');
+const mailer = require('./src/mailer');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -59,7 +60,12 @@ app.post('/api/contact', async (req, res, next) => {
   if (Object.keys(errors).length) return res.status(422).json({ ok: false, errors });
 
   try {
-    await saveEnquiry(enquiry);
+    if (mailer.isConfigured()) {
+      await mailer.sendEnquiry(enquiry);
+    } else {
+      // Local fallback. On Render's free plan this file is wiped on every restart.
+      await saveEnquiry(enquiry);
+    }
     console.log(`New enquiry from ${enquiry.name} <${enquiry.email}>`);
     res.json({ ok: true });
   } catch (err) {
@@ -79,4 +85,5 @@ app.use((err, req, res, next) => {
 
 app.listen(PORT, () => {
   console.log(`Inventory Masters site running at http://localhost:${PORT}`);
+  if (!mailer.isConfigured()) console.warn('RESEND_API_KEY not set: enquiries are saved to data/enquiries.json instead of emailed.');
 });

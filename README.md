@@ -25,4 +25,12 @@ Set `PORT` to use a different port.
 
 ## Contact form
 
-Enquiries are validated on the server and saved to `data/enquiries.json` (ignored by git). To get them by email instead, change `saveEnquiry` in `server.js` to send through a mail service.
+Enquiries are validated on the server, then emailed through [Resend](https://resend.com) (`src/mailer.js`). Render's free plan blocks outgoing SMTP, which is why it uses an HTTPS email API rather than Gmail SMTP.
+
+| Env var | Purpose |
+| --- | --- |
+| `RESEND_API_KEY` | Required to send email. Without it, enquiries are saved to `data/enquiries.json` (handy locally, but wiped on every Render restart). |
+| `ENQUIRY_TO` | Inbox that receives enquiries. Defaults to the company email in `src/content.js`. |
+| `ENQUIRY_FROM` | Sender address. Defaults to `onboarding@resend.dev`, which can only deliver to the email the Resend account was created with, until you verify your own domain in Resend. |
+
+The visitor's email is set as Reply-To, so you can reply to an enquiry directly.
